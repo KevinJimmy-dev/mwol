@@ -36,11 +36,11 @@
         <p>Vamos lá?</p>
 
         <div>
-            <button class="btn btn-primary">Login</button>
+            <a href="{{ route('register') }}"><button class="btn btn-primary">Login</button></a>
 
             <div class="spacing"></div>
 
-            <button class="btn btn-primary">Registre-se</button>
+            <a href="{{ route('register') }}"><button class="btn btn-primary">Registre-se</button></a>
         </div>
     </footer>
 </body>
