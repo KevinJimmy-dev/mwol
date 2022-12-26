@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Login - MWOL</title>
+    <title>Redefinir senha - M.W.O.L</title>
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -33,54 +33,42 @@
                 <div class="card o-hidden border-0 shadow-lg my-5">
                     <div class="card-body p-0">
                         <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
 
                             <div class="col-lg-6">
                                 <div class="p-5">
-                                    @if (session('error'))
-                                        <div class="alert alert-danger ml-3 mr-3 mt-3">
-                                            {{ session('error') }}
-                                        </div>
-                                    @endif
-
-                                    @if (session('success'))
-                                        <div class="alert alert-success ml-3 mr-3 mt-3">
-                                            {{ session('success') }}
-                                        </div>
-                                    @endif
-
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Bem-vindo de volta!</h1>
+                                        <h1 class="h4 text-gray-900 mb-2">Esqueceu sua senha?</h1>
+
+                                        <p class="mb-4">
+                                            Nós entendemos, essas coisas acontecem. Basta digitar seu endereço de e-mail
+                                            abaixo e enviaremos um link para redefinir sua senha!
+                                        </p>
                                     </div>
 
-                                    <form method="POST" action="{{ route('auth.authenticate') }}" class="user">
+                                    <form method="POST" class="user">
                                         @csrf
 
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="email"
-                                                name="email" aria-describedby="emailHelp" placeholder="E-mail"
+                                            <input type="email" class="form-control form-control-user" name="email"
+                                                id="exampleInputEmail" aria-describedby="emailHelp" placeholder="E-mail"
                                                 required>
                                         </div>
 
-                                        <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password"
-                                                name="password" placeholder="Senha" required>
-                                        </div>
-
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            Login
+                                            Enviar e-mail
                                         </button>
                                     </form>
 
                                     <hr>
 
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('recovery-password') }}">Esqueceu sua
-                                            senha?</a>
+                                        <a class="small" href="{{ route('auth.register') }}">Crie sua conta!</a>
                                     </div>
 
                                     <div class="text-center">
-                                        <a class="small" href="{{ route('auth.register') }}">Crie sua conta!</a>
+                                        <a class="small" href="{{ route('auth.login') }}">Já possui uma conta? Faça
+                                            Login!</a>
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +88,6 @@
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <script src="js/sb-admin-2.min.js"></script>
-
 </body>
 
 </html>

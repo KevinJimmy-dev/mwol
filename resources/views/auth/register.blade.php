@@ -42,7 +42,7 @@
                                 <h1 class="h4 text-gray-900 mb-4">Crie sua conta</h1>
                             </div>
 
-                            <form class="user" method="POST" action="{{ route('register-create') }}">
+                            <form class="user" method="POST" action="{{ route('auth.create') }}">
                                 @csrf
 
                                 <div class="form-group row">
@@ -108,11 +108,11 @@
                             <hr>
 
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Esqueceu sua senha?</a>
+                                <a class="small" href="{{ route('recovery-password') }}">Esqueceu sua senha?</a>
                             </div>
 
                             <div class="text-center">
-                                <a class="small" href="login.html">Já possui uma conta? Faça Login!</a>
+                                <a class="small" href="{{ route('auth.login') }}">Já possui uma conta? Faça Login!</a>
                             </div>
                         </div>
                     </div>

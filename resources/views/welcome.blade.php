@@ -28,7 +28,8 @@
         <section>
             <p>Um sistema desenvolvido para registrar seu aprendizado em outras linguas.</p>
 
-            <p>É fácil utiliza-lo, basta fazer login ou se registrar, e cadastrar uma palavra, o seu significado e 3 exemplos de frases que contém ela.</p>
+            <p>É fácil utiliza-lo, basta fazer login ou se registrar, e cadastrar uma palavra, o seu significado e 3
+                exemplos de frases que contém ela.</p>
         </section>
     </main>
 
@@ -36,11 +37,11 @@
         <p>Vamos lá?</p>
 
         <div>
-            <a href="{{ route('login') }}"><button class="btn btn-primary">Login</button></a>
+            <a href="{{ route('auth.login') }}"><button class="btn btn-primary">Login</button></a>
 
             <div class="spacing"></div>
 
-            <a href="{{ route('register') }}"><button class="btn btn-primary">Registre-se</button></a>
+            <a href="{{ route('auth.register') }}"><button class="btn btn-primary">Registre-se</button></a>
         </div>
     </footer>
 </body>

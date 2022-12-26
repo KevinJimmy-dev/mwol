@@ -33,8 +33,8 @@ class AuthController extends Controller
         ]);
 
         Auth::login($user);
-        
-        return redirect()->route('register');
+
+        return redirect()->route('auth.register');
     }
 
     public function login()
@@ -47,11 +47,11 @@ class AuthController extends Controller
         $user = User::where('email', $request->get('email'))->first();
 
         if (is_null($user) || !Hash::check($request->get('password'), $user->password)) {
-            return back()->with('error', 'Falha na autenticação. Verifique o email e senha informados.');
+            return redirect()->route('auth.authenticate')->with('error', 'Falha na autenticação. Verifique o email e senha informados.');
         }
 
         Auth::login($user);
 
-        return redirect()->route('register');
+        return redirect()->route('auth.register');
     }
 }
