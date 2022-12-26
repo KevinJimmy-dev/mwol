@@ -32,6 +32,12 @@
                     <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
                     <div class="col-lg-7">
                         <div class="p-5">
+                            @if (session('error'))
+                                <div class="alert alert-danger ml-3 mr-3 mt-3">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+
                             <div class="text-center">
                                 <h1 class="h4 text-gray-900 mb-4">Crie sua conta</h1>
                             </div>
