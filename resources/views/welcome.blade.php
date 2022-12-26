@@ -36,7 +36,7 @@
         <p>Vamos lá?</p>
 
         <div>
-            <a href="{{ route('register') }}"><button class="btn btn-primary">Login</button></a>
+            <a href="{{ route('login') }}"><button class="btn btn-primary">Login</button></a>
 
             <div class="spacing"></div>
 

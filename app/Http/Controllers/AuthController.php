@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -33,6 +34,24 @@ class AuthController extends Controller
 
         Auth::login($user);
         
+        return redirect()->route('register');
+    }
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function auth(LoginRequest $request)
+    {
+        $user = User::where('email', $request->get('email'))->first();
+
+        if (is_null($user) || !Hash::check($request->get('password'), $user->password)) {
+            return back()->with('error', 'Falha na autenticação. Verifique o email e senha informados.');
+        }
+
+        Auth::login($user);
+
         return redirect()->route('register');
     }
 }
