@@ -16,13 +16,15 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
+    <link rel="shortcut icon" href="imgs\favicon.png" type="image/x-icon">
+
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
 <body class="bg-gradient-primary">
 
-    <div class="container mt-5">
+    <div class="container" style="margin-top: 13rem">
 
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -34,38 +36,67 @@
                                 <h1 class="h4 text-gray-900 mb-4">Crie sua conta</h1>
                             </div>
 
-                            <form class="user">
+                            <form class="user" method="POST" action="{{ route('register-create') }}">
+                                @csrf
+
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" name="name"
-                                            id="fullName" placeholder="Nome Completo">
+                                        <input type="text"
+                                            class="form-control form-control-user @error('name') is-invalid @enderror"
+                                            name="name" id="fullName" placeholder="Nome Completo"
+                                            value="{{ old('name') }}" required>
+                                        @error('name')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="nickname"
-                                            id="nickname" placeholder="Apelido">
+                                        <input type="text"
+                                            class="form-control form-control-user @error('nickname') is-invalid @enderror"
+                                            name="nickname" id="nickname" placeholder="Apelido"
+                                            value="{{ old('nickname') }}" required>
+                                        @error('nickname')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-user" id="email" name="email"
-                                        placeholder="E-mail">
+                                    <input type="email"
+                                        class="form-control form-control-user @error('email') is-invalid @enderror"
+                                        id="email" name="email" placeholder="E-mail" value="{{ old('email') }}"
+                                        required>
+                                    @error('email')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="password" class="form-control form-control-user" name="password"
-                                            id="password" placeholder="Senha">
+                                        <input type="password"
+                                            class="form-control form-control-user @error('password') is-invalid @enderror"
+                                            name="password" id="password" placeholder="Senha" required>
+                                        @error('password')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
+
                                     <div class="col-sm-6">
-                                        <input type="password" class="form-control form-control-user" name="confirmPassword"
-                                            id="confirmPassword" placeholder="Repita a senha">
+                                        <input type="password"
+                                            class="form-control form-control-user @error('password_confirmation') is-invalid @enderror"
+                                            name="password_confirmation" id="password_confirmation"
+                                            placeholder="Repita a senha" required>
+                                        @error('password_confirmation')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
                                     </div>
+
                                 </div>
 
-                                <a href="#" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Criar Conta
-                                </a>
+                                </button>
                             </form>
 
                             <hr>

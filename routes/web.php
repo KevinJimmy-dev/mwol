@@ -6,6 +6,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('auth.register');
-})->name('register');
+Route::get('/registre-se', 'App\Http\Controllers\AuthController@register')->name('register');
+Route::post('/criar-conta', 'App\Http\Controllers\AuthController@create')->name('register-create');
