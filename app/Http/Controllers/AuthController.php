@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -34,7 +35,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('auth.register');
+        return redirect()->route('panel.index');
     }
 
     public function login()
@@ -52,6 +53,17 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('auth.register');
+        return redirect()->route('panel.index');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+ 
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+
+        return redirect()->route('auth.login');
     }
 }

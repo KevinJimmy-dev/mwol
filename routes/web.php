@@ -6,14 +6,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/registre-se', 'App\Http\Controllers\AuthController@register')->name('auth.register');
-Route::post('/registre-se', 'App\Http\Controllers\AuthController@create')->name('auth.create');
+Route::namespace('App\Http\Controllers')->group(function () {
+    Route::get('/registre-se', 'AuthController@register')->name('auth.register');
+    Route::post('/registre-se', 'AuthController@create')->name('auth.create');
 
-Route::get('/login', 'App\Http\Controllers\AuthController@login')->name('auth.login');
-Route::post('/login', 'App\Http\Controllers\AuthController@auth')->name('auth.authenticate');
+    Route::get('/login', 'AuthController@login')->name('auth.login');
+    Route::post('/login', 'AuthController@auth')->name('auth.authenticate');
+    
+    Route::get('/logout', 'AuthController@logout')->name('auth.logout');
 
-Route::get('/esqueceu-sua-senha', 'App\Http\Controllers\RecoveryPasswordController@forgotPassword')->name('recovery-password');
-Route::post('/esqueceu-sua-senha', 'App\Http\Controllers\RecoveryPasswordController@sendEmail')->name('recovery-password.send-email');
+    Route::get('/esqueceu-sua-senha', 'RecoveryPasswordController@forgotPassword')->name('recovery-password');
+    Route::post('/esqueceu-sua-senha', 'RecoveryPasswordController@sendEmail')->name('recovery-password.send-email');
 
-Route::get('/redefinir-sua-senha', 'App\Http\Controllers\RecoveryPasswordController@recoveryPassword')->name('recovery-password.index');
-Route::post('/redefinir-sua-senha', 'App\Http\Controllers\RecoveryPasswordController@recovery')->name('recovery-password.recovery');
+    Route::get('/redefinir-sua-senha', 'RecoveryPasswordController@recoveryPassword')->name('recovery-password.index');
+    Route::post('/redefinir-sua-senha', 'RecoveryPasswordController@recovery')->name('recovery-password.recovery');
+
+    Route::middleware('auth')->prefix('painel')->name('panel.')->group(function () {
+        Route::get('/', 'PanelController@index')->name('index');
+    });
+});
