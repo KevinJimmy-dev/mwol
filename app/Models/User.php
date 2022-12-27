@@ -24,4 +24,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Word::class);
     }
+
+    public function phrases(): HasMany
+    {
+        return $this->hasMany(Phrase::class);
+    }
 }

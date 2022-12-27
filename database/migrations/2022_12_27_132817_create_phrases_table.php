@@ -15,6 +15,7 @@ class CreatePhrasesTable extends Migration
     {
         Schema::create('phrases', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('word_id');
             $table->text('phrase');
             $table->text('translation');

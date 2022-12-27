@@ -11,7 +11,7 @@ class Language extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name', 'theme', 'hover'
     ];
 
     public function words(): HasMany
