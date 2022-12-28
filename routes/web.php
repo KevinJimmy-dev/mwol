@@ -23,5 +23,12 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     Route::middleware('auth')->prefix('painel')->name('panel.')->group(function () {
         Route::get('/', 'PanelController@index')->name('index');
+
+        Route::name('word.')->group(function () {
+            Route::get('/palavras', 'WordController@index')->name('index');
+            Route::post('/palavras/cadastrar', 'WordController@store')->name('store');
+            Route::put('/palavras/editar/{id}', 'WordController@update')->name('update');
+            Route::delete('/palavras/excluir/{id}', 'WordController@delete')->name('delete');
+        });
     });
 });

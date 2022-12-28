@@ -17,7 +17,7 @@ class CreateWordsTable extends Migration
             $table->id();
             $table->unsignedInteger('language_id');
             $table->unsignedInteger('user_id');
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('translation');
             $table->timestamps();
         });

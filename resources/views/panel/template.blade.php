@@ -11,15 +11,15 @@
 
     <title>@yield('title') - M.W.O.L</title>
 
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <link rel="shortcut icon" href="imgs\favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/imgs/favicon.png" type="image/x-icon">
 
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
 </head>
 
@@ -29,7 +29,7 @@
 
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('panel.index') }}">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-fw fa-globe"></i>
                 </div>
@@ -38,25 +38,17 @@
 
             <hr class="sidebar-divider my-0">
 
-            <li class="nav-item active">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ Route::getCurrentRoute()->getName() == 'panel.index' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('panel.index') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
+            <li class="nav-item {{ Route::getCurrentRoute()->getName() == 'panel.word.index' ? 'active' : '' }}">
+                <a class="nav-link collapsed" href="{{ route('panel.word.index') }}">
                     <i class="fas fa-file-word"></i>
                     <span>Palavras</span>
                 </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Ações:</h6>
-                        <a class="collapse-item" href="buttons.html"><i class="fas fa-plus mr-2"></i> Cadastrar</a>
-                        <a class="collapse-item" href="cards.html"><i class="fas fa-book mr-2"></i> Ver</a>
-                    </div>
-                </div>
             </li>
 
             <li class="nav-item">
@@ -143,7 +135,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-4 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->nickname }}</span>
-                                <img class="img-profile rounded-circle" src="imgs/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="/imgs/undraw_profile.svg">
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -168,9 +160,27 @@
                     </ul>
 
                 </nav>
-            </div>
 
-            @yield('content')
+                @if (session('success'))
+                    <div class="alert alert-success ml-3 mr-3 text-center">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
+                @if (session('warning'))
+                    <div class="alert alert-warning ml-3 mr-3 text-center">
+                        {{ session('warning') }}
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert alert-danger ml-3 mr-3 text-center">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                @yield('content')
+            </div>
 
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
@@ -213,12 +223,12 @@
         </div>
     </div>
 
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/vendor/jquery/jquery.min.js"></script>
+    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <script src="js/sb-admin-2.min.js"></script>
+    <script src="/js/sb-admin-2.min.js"></script>
 
     @yield('scripts')
 </body>
