@@ -12,7 +12,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     Route::get('/login', 'AuthController@login')->name('auth.login');
     Route::post('/login', 'AuthController@auth')->name('auth.authenticate');
-    
+
     Route::get('/logout', 'AuthController@logout')->name('auth.logout');
 
     Route::get('/esqueceu-sua-senha', 'RecoveryPasswordController@forgotPassword')->name('recovery-password');
@@ -29,6 +29,13 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::post('/palavras/cadastrar', 'WordController@store')->name('store');
             Route::put('/palavras/editar/{id}', 'WordController@update')->name('update');
             Route::delete('/palavras/excluir/{id}', 'WordController@delete')->name('delete');
+        });
+
+        Route::name('phrase.')->group(function () {
+            Route::get('/frases', 'PhraseController@index')->name('index');
+            Route::post('/frases/cadastrar', 'PhraseController@store')->name('store');
+            Route::put('/frases/editar/{id}', 'PhraseController@update')->name('update');
+            Route::delete('/frases/excluir/{id}', 'PhraseController@delete')->name('delete');
         });
     });
 });
